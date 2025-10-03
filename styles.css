@@ -1,11 +1,19 @@
+body {
+    margin: 0;
+}
+
 nav {
-    background-color: aqua;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1%;
+    padding: 0 16px;
+    background-color: #1665E5;
+    color: white;
 }
 
 body {
     margin: 0;
+}
+img {
+    size: 1px;
 }

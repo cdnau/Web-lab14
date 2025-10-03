@@ -1,19 +1,71 @@
 body {
     margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
+    padding: 10px 16px;
     background-color: #1665E5;
     color: white;
 }
 
-body {
-    margin: 0;
+/* เพิ่ม Class นี้ใน HTML เพื่อครอบเนื้อหาทั้งหมด (ยกเว้น nav) */
+.main-content-wrapper {
+    margin: 20px auto; 
+    padding: 0 16px; 
 }
-img {
-    size: 1px;
+
+.header-container {
+    display: flex;       
+    align-items: center; 
+}
+
+.logo-image {
+    height: 100px;
+    width: auto;
+    margin: 15px;
+    border: 5px solid #c74f4f;
+    border-radius: 10px;
+    padding: 1px;
+    transition: border-color 0.3s ease; 
+}
+
+.logo-image:hover {
+    border-color: gold; 
+}
+
+.main-title {
+    margin: 0; 
+    font-size: 2em;
+    font-weight: bold;
+    color: #1665E5;
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 1em; 
+    font-style: italic;
+    background-color: #ccc;
+}
+
+.history-block {
+    background-color: #e2e1e1; 
+    border: 1px solid #e0e0e0;
+    padding: 1px; 
+    border-radius: 4px;
+    margin-bottom: 20px;
+    height: 200px;
+}
+
+.history-block p {
+    margin: 5px;
+    font-family: monospace;
+}
+
+hr {
+    margin: 20px 0;
 }

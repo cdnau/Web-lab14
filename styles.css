@@ -12,8 +12,12 @@ nav {
     background-color: #1665E5;
     color: white;
 }
+nav h2, nav p {
+    margin: 0; 
+}
 
 .main-content-wrapper {
+    max-width: 1200px;
     margin: 20px auto; 
     padding: 0 16px; 
 }
@@ -37,6 +41,10 @@ nav {
     border-color: gold; 
 }
 
+.text-column {
+    margin-left: 20px;
+}
+
 .main-title {
     margin: 0; 
     font-size: 2em;
@@ -54,27 +62,58 @@ nav {
 .history-block {
     background-color: #e2e1e1; 
     border: 1px solid #e0e0e0;
-    padding: 1px; 
+    padding: 15px; 
     border-radius: 4px;
     margin-bottom: 20px;
-    height: 200px;
+    height: 300px;
+    width: auto;
+    overflow-y: auto;
 }
 
 .history-block p {
-    margin: 5px;
+    margin: 5px 0;
     font-family: monospace;
 }
 
 hr {
     margin: 20px 0;
 }
-.AccountInfo {
-    display: flex;       
-    align-items: flex-start;
-    margin-top: 20px;
+
+.two-column-layout {
+    display: flex; 
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.AccountInfo .Acin {
+.account-overview-column {
+    width: 55%;
+}
+
+.financial-tools-column {
+    width: 40%;
+}
+
+.account-overview-column h3, .financial-tools-column h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    display: inline-block;
+    background-color: aquamarine;
+}
+
+.AccountInfo, .AccountInfo1 {
+    display: flex;       
+    align-items: flex-start;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    background-color: #f1eeee;
+}
+
+.AccountInfo .Acin, .AccountInfo1 .Acin1 {
     height: 100px;
     width: 100px;
     border: 2px solid #32CD32;
@@ -82,21 +121,54 @@ hr {
     margin-right: 20px;
     padding: 5px;
 }
-.details1{
-    padding-top: 0; 
-    margin-top: 0;
-}
-.details1 h4, .details1 h3 {
+
+.details1 h4, .details2 h4 {
+    margin-top: 0; 
     margin-bottom: 5px; 
-    padding-top: 0; 
     font-weight: bold;
-    margin-bottom: 15px;
-}
-.details1 p {
-    margin: 0; 
+    font-size: 1.2em;
 }
 
-.details1 span {
-    display: block;
+.details1 p, .details2 p {
     margin: 0; 
+    font-size: 1em;
+}
+
+.bitem {
+    display: flex; 
+    align-items: center;
+    margin-bottom: 5px; 
+}
+
+.bitem label {
+    width: 170px;
+    text-align: right; 
+    margin-right: 5px;
+}
+
+.bitem input[type="number"], .bitem input[type="text"] {
+    width: 80px; 
+    margin-right: 10px;
+    text-align: right;
+}
+
+.bitem select {
+    margin-right: 10px;
+}
+
+.currency-converter .bitem label {
+    width: 120px; 
+}
+
+.enter-number-section {
+    margin-top: 20px;
+}
+
+#ending {
+    text-align: center; 
+    padding: 15px 0; 
+    font-size: 0.9em;
+    color: #666;
+    border-top: 1px solid #ccc;
+    margin-top: 30px;
 }

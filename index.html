@@ -10,7 +10,7 @@
     
     <nav class="navbar"> 
         <p>68070029</p>
-        <h2>ITF website</h2>
+        <h2>ITF Website</h2>
         <p>Week 14</p>
     </nav>
 
@@ -28,24 +28,87 @@
         <hr> 
         
         <div class="history-block">
-            <p>1. Current account balance: 1000, Current cash balance: 1000</p>
-            <p>2. Deposit: 500, New account balance: 1500</p>
-            <p>3. Withdrawal: 200, New cash balance: 800</p>
-        </div>
-        <h3>Account Overview</h3>
-        <div class="AccountInfo">
-            <img src="office-man.png" alt="acin" class="Acin">
-            <div class="details1">
-                <h4 class="info-title">Account Information</h4> 
-                <p>Name: Chindanai Rueangsombat</p>
-                <p>Type: Savings Account</p> s
+            <p>TRANSACTION :</p>
             </div>
+
+        <div class="two-column-layout">
+            
+            <div class="account-overview-column">
+                
+                <h3>Account Overview</h3>
+                
+                <div class="AccountInfo">
+                    <img src="office-man.png" alt="account icon" class="Acin">
+                    <div class="details1">
+                        <h4 class="info-title">Account Information</h4> 
+                        <p>Name: Chindanai Rueangsombat</p>
+                        <p>Type: Savings Account</p>
+                    </div>
+                </div>
+
+                <div class="AccountInfo1">
+                    <img src="balance.png" alt="balance icon" class="Acin1">
+                    <div class="details2">
+                        <h4 class="info-title">Balance Information</h4>
+
+                        <div class="bitem">
+                            <label>Current account Balance:</label>
+                            <input type="number" id="accountBalanceInput" value="0">
+                        </div>
+                        
+                        <div class="bitem">    
+                            <label>Current cash balance:</label>
+                            <input type="number" id="cashBalanceInput" value="0">
+                            <button onclick="changeCashBalance()">Change</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="AccountInfo1">
+                    <img src="banking.png" alt="Bank Operation Icon" class="Acin1">
+                    <div class="details2">
+                        <h4 class="info-title">Bank Operation</h4>
+                        <div class="bitem">
+                            <select id="operationType">
+                                <option value="deposit">Deposit</option>
+                                <option value="withdraw">Withdraw</option>
+                            </select>
+                            <input type="number" id="operationAmount" value="0">
+                            <button onclick="performOperation()">Proceed</button>
+                        </div>
+                    </div>
+                </div>
+            </div> <div class="financial-tools-column">
+                
+                <h3>Financial Tools</h3>
+                
+                <div class="currency-converter">
+                    <img src="bitcoin.png" alt="Coins Icon" class="Acin1">
+                    <div class="converter-details">
+                        <h4>Currency Converter</h4>
+                        
+                        <div class="bitem converter-item">
+                            <label>Input balance:</label>
+                            <input type="number" id="inputBalance" value="0">
+                        </div>
+                        <div class="bitem converter-item">
+                            <label>Output balance:</label>
+                            <input type="text" id="outputBalance" value="0" readonly>
+                        </div>
+
+                        <div class="bitem converter-item">
+                            <label>Input currency:</label>
+                            <select id="inputCurrency">
+                                <option value="USD">USD</option>
+                                <option value="THB">THB</option>
+                            </select>
+                            <button onclick="convertCurrency()">Convert</button>
+                        </div>
+                    </div>
+                    <div id="ending">FOR ITF CLASS in IT,KMITL</div>
+                </div>
+            </div> 
         </div>
-        <div>
-            <label for="my_input">Enter any number:</label>
-            <input type="number" id="my_input" value="1">
-            <button type="button" onclick="calc(this.innerText)">+1</button>
-            <button type="button" onclick="calc(this.innerText)">-1</button>
         </div>
 
     </div> <script src="script.js"></script> 

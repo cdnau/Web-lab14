@@ -1,44 +1,131 @@
-let accountBalance = 0;
-let cashBalance = 0;
-let transactionCount = 0;
+var accountBalance = 1000
+var cashBalance = 1000
+var transactionCount = 1
 
-function calc(change) {
-    let input = document.getElementById('my_input');
-    let currentValue = parseInt(input.value) || 0;
-    input.value = currentValue + change;
+function getElementValue(id){
+    return parseInt(document.getElementById(id).value) || 0
 }
 
-function performOperation() {
-    const type = document.getElementById('operationType').value;
-    const amount = parseInt(document.getElementById('operationAmount').value);
-    const history = document.querySelector('.history-block');
+function setElementValue(id, value){
+    document.getElementById(id).value = value
+}
 
-    if (isNaN(amount) || amount <= 0) {
-		alert("ไม่สามารถดำเนินรายการได้\nโปรดระบุจำนวนที่มากกว่า 0");
-        return;
+function logTransaction(message){
+    var history = document.querySelector('.history-block')
+    history.innerHTML += "<p>" + transactionCount + ". " + message + "</p>"
+    history.scrollTop = history.scrollHeight
+}
+
+function updateBalanceDisplay(){
+    setElementValue("accountBalanceInput", accountBalance)
+    setElementValue("cashBalanceInput", cashBalance)
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+    var msg = "Current account balance: " + accountBalance + ", Current cash balance: " + cashBalance
+    logTransaction(msg)
+    updateBalanceDisplay()
+    transactionCount = 1 
+})
+
+function calc(change){
+    var input = document.getElementById("my_input")
+    var now = parseInt(input.value) || 0
+    input.value = now + change
+}
+
+function performOperation(){
+    var type = document.getElementById("operationType").value
+    var amount = getElementValue("operationAmount")
+
+    if(amount <= 0){
+        alert("ไม่สามารถดำเนินรายการได้\nโปรดระบุจำนวนที่มากกว่า 0")
+        return
     }
-	
 
-    if (type === 'deposit') {
-        accountBalance += amount;
-        cashBalance += amount;
-        transactionCount++;
-        history.innerHTML += `<p>${transactionCount}. Deposit: ${amount} THB, New account balance: ${accountBalance} THB, New cash balance: ${cashBalance}</p>`;
-    } else if (type === 'withdraw') {
-        if (amount > accountBalance) {
-            alert("Insufficient account balance.");
-            return;
+    var text = ""
+
+    if(type === "deposit"){
+        if(amount > cashBalance){
+            alert("ยอดเงินสดไม่พอสำหรับการฝาก\nกรุณาลองใหม่อีกครั้ง")
+            return
         }
-        accountBalance -= amount;
-        cashBalance -= amount;
-        transactionCount++;
-        history.innerHTML += `<p>${transactionCount}. Withdrawal: ${amount}, New account balance: ${accountBalance}, New cash balance: ${cashBalance}</p>`;
+        accountBalance += amount
+        cashBalance -= amount
+        text = "Deposit: " + amount
+    }else if(type === "withdraw"){
+        if(amount > accountBalance){
+            alert("ยอดเงินในบัญชีไม่พอสำหรับการถอน\nกรุณาลองใหม่อีกครั้ง")
+            return
+        }
+        accountBalance -= amount
+        cashBalance += amount
+        text = "Withdrawal: " + amount
     }
 
-    document.getElementById('accountBalanceInput').value = accountBalance;
-    document.getElementById('cashBalanceInput').value = cashBalance;
-    document.getElementById('operationAmount').value = 0;
-    
+    transactionCount++
+    var msg = text + " | Balance Information: Current account Balance: " + accountBalance + ", Current cash balance: " + cashBalance
+    logTransaction(msg)
+    updateBalanceDisplay()
+    setElementValue("operationAmount", 0)
+}
 
-    history.scrollTop = history.scrollHeight;
+function toggleAccountBalanceEdit() {
+    var input = document.getElementById('accountBalanceInput')
+    var button = document.getElementById('accountBalanceChangeBtn')
+    
+    if (input.readOnly) {
+        input.readOnly = false
+        button.innerText = 'Save'
+        input.focus()
+    } else {
+        var newAmount = parseInt(input.value)
+        
+        if (isNaN(newAmount) || newAmount < 0) {
+            alert("โปรดระบุจำนวนที่ถูกต้องและไม่ติดลบ")
+            input.value = accountBalance
+            return 
+        }
+        
+        var oldAccountBalance = accountBalance
+        accountBalance = newAmount
+        
+        transactionCount++
+        var msg = "Change Account Balance: from " + oldAccountBalance + " to " + newAmount + " | Balance Information: Current account Balance: " + accountBalance + ", Current cash balance: " + cashBalance
+        logTransaction(msg)
+
+        input.readOnly = true
+        button.innerText = 'Change'
+        updateBalanceDisplay()
+    }
+}
+
+function toggleCashBalanceEdit() {
+    var input = document.getElementById('cashBalanceInput')
+    var button = document.getElementById('cashBalanceChangeBtn')
+    
+    if (input.readOnly) {
+        input.readOnly = false
+        button.innerText = 'Save'
+        input.focus()
+    } else {
+        var newAmount = parseInt(input.value)
+        
+        if (isNaN(newAmount) || newAmount < 0) {
+            alert("โปรดระบุจำนวนที่ถูกต้องและไม่ติดลบ")
+            input.value = cashBalance
+            return 
+        }
+        
+        var oldCashBalance = cashBalance
+        cashBalance = newAmount
+
+        transactionCount++
+        var msg = "Change Cash Balance: from " + oldCashBalance + " to " + newAmount + " | Balance Information: Current account Balance: " + accountBalance + ", Current cash balance: " + cashBalance
+        logTransaction(msg)
+        
+        input.readOnly = true
+        button.innerText = 'Change'
+        updateBalanceDisplay()
+    }
 }

@@ -48,21 +48,22 @@
 
                 <div class="AccountInfo1">
                     <img src="balance.png" alt="balance icon" class="Acin1">
-                    <div class="details2">
-                        <h4 class="info-title">Balance Information</h4>
+                <div class="details2">
+                    <h4 class="info-title">Balance Information</h4>
 
-                        <div class="bitem">
-                            <label>Current account Balance:</label>
-                            <input type="number" id="accountBalanceInput" value="0">
-                        </div>
-                        
-                        <div class="bitem">    
-                            <label>Current cash balance:</label>
-                            <input type="number" id="cashBalanceInput" value="0">
-                            <button onclick="changeCashBalance()">Change</button>
-                        </div>
-                    </div>
-                </div>
+                     <div class="bitem">
+                        <label>Current account Balance:</label>
+                        <input type="text" id="accountBalanceInput" value="1000 THB" readonly> 
+            </div>
+        
+        <div class="bitem">    
+            <label>Current cash balance:</label>
+            <input type="text" id="cashBalanceInput" value="1000 THB" readonly>
+            <button id="cashBalanceChangeBtn" onclick="toggleCashBalanceEdit()">Change</button>
+        </div>
+        
+        </div>
+</div>
 
                 <div class="AccountInfo1">
                     <img src="banking.png" alt="Bank Operation Icon" class="Acin1">
@@ -83,7 +84,7 @@
                 <h3>Financial Tools</h3>
                 
                 <div class="currency-converter">
-                    <img src="bitcoin.png" alt="Coins Icon" class="Acin1">
+                    <img src="Bitcoin.png" alt="Coins Icon" class="Acin1">
                     <div class="converter-details">
                         <h4>Currency Converter</h4>
                         

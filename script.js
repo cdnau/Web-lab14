@@ -23,7 +23,7 @@ function updateBalanceDisplay(){
 
 document.addEventListener("DOMContentLoaded", function(){
     var msg = "Current account balance: " + accountBalance + ", Current cash balance: " + cashBalance
-    logTransaction(msg)
+    logTransaction(msg) 
     updateBalanceDisplay()
     transactionCount = 1 
 })
@@ -70,62 +70,40 @@ function performOperation(){
     setElementValue("operationAmount", 0)
 }
 
-function toggleAccountBalanceEdit() {
+function updateAccountBalance() {
     var input = document.getElementById('accountBalanceInput')
-    var button = document.getElementById('accountBalanceChangeBtn')
+    var newAmount = parseInt(input.value)
     
-    if (input.readOnly) {
-        input.readOnly = false
-        button.innerText = 'Save'
-        input.focus()
-    } else {
-        var newAmount = parseInt(input.value)
-        
-        if (isNaN(newAmount) || newAmount < 0) {
-            alert("โปรดระบุจำนวนที่ถูกต้องและไม่ติดลบ")
-            input.value = accountBalance
-            return 
-        }
-        
-        var oldAccountBalance = accountBalance
-        accountBalance = newAmount
-        
-        transactionCount++
-        var msg = "Change Account Balance: from " + oldAccountBalance + " to " + newAmount + " | Balance Information: Current account Balance: " + accountBalance + ", Current cash balance: " + cashBalance
-        logTransaction(msg)
-
-        input.readOnly = true
-        button.innerText = 'Change'
-        updateBalanceDisplay()
+    if (isNaN(newAmount) || newAmount < 0) {
+        alert("โปรดระบุจำนวนที่ถูกต้องและไม่ติดลบ")
+        input.value = accountBalance
+        return 
     }
+    
+    var oldAccountBalance = accountBalance
+    accountBalance = newAmount
+    
+    transactionCount++
+    var msg = "Set Account Balance: from " + oldAccountBalance + " to " + newAmount + " | Balance Information: Current account Balance: " + accountBalance + ", Current cash balance: " + cashBalance
+    logTransaction(msg)
+    updateBalanceDisplay()
 }
 
-function toggleCashBalanceEdit() {
+function updateCashBalance() {
     var input = document.getElementById('cashBalanceInput')
-    var button = document.getElementById('cashBalanceChangeBtn')
+    var newAmount = parseInt(input.value)
     
-    if (input.readOnly) {
-        input.readOnly = false
-        button.innerText = 'Save'
-        input.focus()
-    } else {
-        var newAmount = parseInt(input.value)
-        
-        if (isNaN(newAmount) || newAmount < 0) {
-            alert("โปรดระบุจำนวนที่ถูกต้องและไม่ติดลบ")
-            input.value = cashBalance
-            return 
-        }
-        
-        var oldCashBalance = cashBalance
-        cashBalance = newAmount
-
-        transactionCount++
-        var msg = "Change Cash Balance: from " + oldCashBalance + " to " + newAmount + " | Balance Information: Current account Balance: " + accountBalance + ", Current cash balance: " + cashBalance
-        logTransaction(msg)
-        
-        input.readOnly = true
-        button.innerText = 'Change'
-        updateBalanceDisplay()
+    if (isNaN(newAmount) || newAmount < 0) {
+        alert("โปรดระบุจำนวนที่ถูกต้องและไม่ติดลบ")
+        input.value = cashBalance
+        return 
     }
+    
+    var oldCashBalance = cashBalance
+    cashBalance = newAmount
+
+    transactionCount++
+    var msg = "Set Cash Balance: from " + oldCashBalance + " to " + newAmount + " | Balance Information: Current account Balance: " + accountBalance + ", Current cash balance: " + cashBalance
+    logTransaction(msg)
+    updateBalanceDisplay()
 }
